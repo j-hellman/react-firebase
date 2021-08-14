@@ -1,4 +1,6 @@
 
+import firebase from './firebaseConnection';
+
 function App() {
   return (
     <div>

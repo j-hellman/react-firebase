@@ -2,7 +2,7 @@
 import firebase from 'firebase/app'; //Importa a biblioteca Firebase
 import 'firebase/firestore';  //Importa o banco de dados
 
-//Codigo copiado do banco de dados Firebase
+//Codigo copiado do banco de dados do Firebase
 let firebaseConfig = {
   apiKey: "AIzaSyCDo6k5J7vjPhyq6UR22u5d0W1O8dSjQxo",
   authDomain: "pratica1-a572b.firebaseapp.com",
