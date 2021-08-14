@@ -18,17 +18,15 @@ function App() {
       titulo: titulo,
       autor: autor
     })
-
-    .then(() => {
+    .then(()=>{
       console.log('Dados cadastrados com sucesso');
       
       //Limpa os campos apos o cadastro com sucesso
       setTitulo('');
       setAutor('');
     })
-
-    .catch((erro) => {
-      console.log('Algo deu errado: ' + erro)
+    .catch((erro)=>{
+      console.log('Algo deu errado: ' + erro);
     })
 
     /* ********* PARA QUANDO O ID É FIXO ***********
@@ -42,7 +40,7 @@ function App() {
     })
 
     //Set é uma promisse, entao retorna .then(para caso de sucesso) e o .catch(para caso erro)
-    .then(() => {
+    .then(()=>{
       console.log('Dados cadastrados com sucesso');
       
       //Limpa os campos apos o cadastro com sucesso
@@ -50,10 +48,27 @@ function App() {
       setAutor('');
     })
 
-    .catch((erro) => {
-      console.log('Algo deu errado: ' + erro)
+    .catch((erro)=>{
+      console.log('Algo deu errado: ' + erro);
     })
     */
+  }
+
+
+  // ***** Funcao botao buscarPost *****
+  async function buscarPost(){
+    await firebase.firestore().collection('posts')
+    .doc('123')
+
+    //O get vai buscar esses dados para mim. Tambem é uma promisse, devolvendo o .then e o .catch
+    .get()
+    .then((snapshot)=>{
+      setTitulo(snapshot.data().titulo);
+      setAutor(snapshot.data().autor);
+    })
+    .catch((erro)=>{
+      console.log('Deu algum erro' + erro);
+    })
   }
 
 
@@ -68,6 +83,7 @@ function App() {
       <input type="text" value={autor} onChange={ (e) => setAutor(e.target.value) } /> <br/>
 
       <button onClick={ handleAdd }>Cadastrar</button>
+      <button onClick={ buscarPost }>Buscar Post</button>
     </div>
   );
 }
